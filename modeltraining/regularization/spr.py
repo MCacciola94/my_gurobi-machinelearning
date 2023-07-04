@@ -14,20 +14,20 @@ class PerspReg:
         self.const=(torch.sqrt(torch.Tensor([alpha/(1-alpha)])))
         self.track_stats=track_stats
         self.stats={'case1':0,'case2':0,'case3':0}
-
-    #Computation of the current factor
+        
+     #Computation of the current factor
     def __call__(self,net, lamb = 0.1):
         reg = 0    
         tot=0
         for m in net.modules():
             if isinstance(m,torch.nn.Linear):
-                group = m.weight
+                group = torch.cat((m.weight,m.bias.unsqueeze(1)),dim=1)
                 reg += self.compatible_group_computation(group, self.M[m])
                 tot+=group.numel()
 
         reg = reg/tot
 
-        return lamb* reg
+        return lamb* reg  
 
     def compatible_group_computation(self, group, M):
         alpha=self.alpha
@@ -60,4 +60,20 @@ class PerspReg:
                         
         return reg
 
-   
+
+    
+
+    #Computation of the current factor
+    def __call__seq(self, net, lamb = 0.1):
+        reg = 0    
+        tot=0
+        n =len(net)
+        linears = net[slice(0,n//2+3,2)]
+        for m in linears:
+                group = torch.cat((m.weight,m.bias.unsqueeze(1)),dim=1)
+                reg += self.compatible_group_computation(group, self.M[m])
+                tot+=group.numel()
+
+        reg = reg/tot
+
+        return lamb* reg

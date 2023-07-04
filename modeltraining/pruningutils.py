@@ -2,6 +2,8 @@ from torch.nn.utils import prune
 import torch
 import torch.nn as nn
 import numpy as np
+
+
 #Pruning crieterion for unstructured threshold pruning
 class ThresholdPruning(prune.BasePruningMethod):
     PRUNING_TYPE = "unstructured"
@@ -12,8 +14,6 @@ class ThresholdPruning(prune.BasePruningMethod):
     def compute_mask(self, tensor, default_mask):
         return torch.abs(tensor) > self.threshold
     
-
-
 def prune_thr(model, thr):
     for m in model.modules(): 
       if isinstance(m,torch.nn.Linear):

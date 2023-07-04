@@ -36,9 +36,9 @@ def get_data(config = None):
     test_dataset = torchvision.datasets.MNIST(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=False,
                                             transform=transforms.ToTensor(), download=False)
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset,batch_size=batch_size,
-                                            shuffle=True,)
+                                            shuffle=True,num_workers=8, pin_memory=True)
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size,
-                                            shuffle=False)
+                                            shuffle=False,num_workers=8, pin_memory=True)
     
     return {'train_loader': train_loader, "valid_loader": test_loader}
 
@@ -58,7 +58,9 @@ def run_epoch(epoch, dataset, model,optimizer, criterion, config, reg_on = False
         input = input.reshape(-1,28*28)
         # compute output
         output = model(input)
+
         loss = criterion(output, target)
+
         loss_noreg = loss.item()
         if reg_on:
             regTerm_gd = reg(model, config.lamb)
@@ -85,6 +87,8 @@ def run_epoch(epoch, dataset, model,optimizer, criterion, config, reg_on = False
                 'Loss {loss.val:.4f} ({loss.avg:.4f}) ([{lnrg:.3f}]+[{lrg:.3f}])\t'
                 'Prec@1 {top1.val:.3f} ({top1.avg:.3f})'.format(
                     epoch, i, len(dataset["train_loader"]), loss = losses, lnrg = loss_noreg, lrg = regTerm, top1 = top1))
+        
+    
     return loss
 
 def validate(dataset, model, config = None, reg_on = False, reg = None):
@@ -245,12 +249,10 @@ def train(model, config):
     start = time()        
 
     for epoch in range(epochs):
-
         # train for one epoch
         print('current lr {:.5e}'.format(optimizer.param_groups[0]['lr']))
         
         loss = run_epoch(epoch, dataset, model, optimizer, criterion, config, reg_on=config.prune, reg = reg)
-
         # evaluate on validation set
         prec1 = validate(dataset, model, config, reg_on = config.prune, reg=reg)
 
@@ -300,6 +302,7 @@ def train(model, config):
     #Finetuning of the pruned model
     print("\n Total elapsed time ", time()-start,"\n FINETUNING\n")
     best_prec1 = 0
+    id_best = -1
 
     for epoch in range(epochs, epochs + config.ft_epochs):
 
@@ -315,15 +318,18 @@ def train(model, config):
         best_prec1 = max(prec1, best_prec1)
         if is_best: loss_tr = loss
 
-        if not config.dont_save:
-
-            if is_best:
-                filename = os.path.join(config.save_path, 'checkpointPR_0.th')
-                i=1
-                while os.path.isfile(filename):
-                    filename = os.path.join(config.save_path, 'checkpointPR_'+str(i)+'.th')
-                    i+=1
-                best_pars =model.state_dict()
+        if is_best:
+            best_pars =model.state_dict()
+            if not config.dont_save:
+                if id_best == -1:
+                    filename = os.path.join(config.save_path, 'checkpointPR_0.th')
+                    i=0
+                    while os.path.isfile(filename):
+                        i+=1
+                        filename = os.path.join(config.save_path, 'checkpointPR_'+str(i)+'.th')
+                        
+                    id_best = i
+                else: filename = os.path.join(config.save_path, 'checkpointPR_'+str(id_best)+'.th')
                 save_checkpoint({
                     'state_dict': best_pars,
                     'best_prec1': best_prec1,
@@ -351,13 +357,13 @@ def train(model, config):
         while os.path.isfile(filename):
             filename = os.path.join(config.save_path, 'checkpointRED_'+str(i)+'.th')
             i+=1
-        if is_best:
-            save_checkpoint({
-                'state_dict': model.state_dict(),
-                'best_prec1': best_prec1,
-                'arch': pruned_arch,
-                'loss': loss_tr
-            }, filename=filename)
+
+        save_checkpoint({
+            'state_dict': model.state_dict(),
+            'best_prec1': best_prec1,
+            'arch': pruned_arch,
+            'loss': loss_tr
+        }, filename=filename)
     validate(dataset, model,config, reg_on = False)
     
     return best_prec1, loss_tr

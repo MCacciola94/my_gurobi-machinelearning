@@ -45,8 +45,10 @@ def getSavePath(config):
     # adversarial part info
     id = '-ID_' + str(config.samp_id) if not config.trainonly else ''
     time = '-TIME_' + str(config.time) if not(config.trainonly) and config.time != 180 else ''
-    
-    filename += id + time
+    obbt = '-OBBT_' + str(config.obbt) if  config.obbt != -1 else ''
+    cuts = '-CUTS_' + str(config.cuts) if  config.cuts != -1 else ''
+
+    filename += id + time+obbt+cuts
 
     if not(config.dont_save) and config.pretrained_path == '':
         if not os.path.isdir(config.save_path):

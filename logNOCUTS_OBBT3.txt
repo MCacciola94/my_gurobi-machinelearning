@@ -1,0 +1,1334 @@
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_0.th')
+
+RESUME_|ARCH_2x50-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_0.th'
+=> loaded pretrained arch 97.55, with accuracy '2x50'
+Test: [49/79]	Loss 0.0005 (0.1286) ([0.001]+[0.000])	Prec@1 100.000 (97.031)
+ * Prec@1 97.550
+Set parameter TokenServer to value "licences.gerad.lan"
+Model for sequential:
+200 variables
+110 constraints
+100 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0             (1, 50)           50           50            0            0
+
+relu_1               (1, 50)           50            0            0           50
+
+linear_2             (1, 50)           50           50            0            0
+
+relu_3               (1, 50)           50            0            0           50
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1679 rows, 1778 columns and 46230 nonzeros
+Model fingerprint: 0xa2f1d384
+Model has 100 general constraints
+Variable types: 1778 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [4e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [2e-03, 5e+00]
+Presolve removed 1094 rows and 573 columns
+Presolve time: 0.17s
+Presolved: 585 rows, 1205 columns, 43631 nonzeros
+Variable types: 1126 continuous, 79 integer (79 binary)
+
+Root relaxation: objective 7.821592e+02, 449 iterations, 0.01 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  782.15922    0   56          -  782.15922      -     -    0s
+     0     0  781.38208    0   56          -  781.38208      -     -    0s
+     0     0   84.84657    0   38          -   84.84657      -     -    0s
+     0     0   84.84657    0   38          -   84.84657      -     -    0s
+     0     0    4.73752    0   25          -    4.73752      -     -    1s
+     0     0    4.73752    0   25          -    4.73752      -     -    1s
+H    0     0                     -13.7310648    4.73752   135%     -    1s
+     0     2    4.73752    0   25  -13.73106    4.73752   135%     -    1s
+
+Explored 53 nodes (2849 simplex iterations) in 1.94 seconds (3.16 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 1: -13.7311 
+
+Optimization achieved user objective limit
+Best objective -1.373106482866e+01, best bound -7.986823660665e-02, gap 99.4183%
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 2.0886 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x50-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_1.th', seed=0)
+
+RESUME_|ARCH_2x50-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_1.th'
+=> loaded pretrained arch 97.47, with accuracy '2x50'
+Test: [49/79]	Loss 0.0012 (0.1283) ([0.001]+[0.000])	Prec@1 100.000 (97.062)
+ * Prec@1 97.470
+Model for sequential:
+200 variables
+110 constraints
+100 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0             (1, 50)           50           50            0            0
+
+relu_1               (1, 50)           50            0            0           50
+
+linear_2             (1, 50)           50           50            0            0
+
+relu_3               (1, 50)           50            0            0           50
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1679 rows, 1778 columns and 46230 nonzeros
+Model fingerprint: 0x3c4bd53d
+Model has 100 general constraints
+Variable types: 1778 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [5e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [4e-03, 5e+00]
+Presolve removed 1092 rows and 571 columns
+Presolve time: 0.18s
+Presolved: 587 rows, 1207 columns, 43636 nonzeros
+Variable types: 1127 continuous, 80 integer (80 binary)
+
+Root relaxation: objective 7.444916e+02, 447 iterations, 0.01 seconds (0.02 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  744.49155    0   59          -  744.49155      -     -    0s
+     0     0  744.44052    0   59          -  744.44052      -     -    0s
+     0     0   65.55077    0   40          -   65.55077      -     -    0s
+     0     0   65.55077    0   40          -   65.55077      -     -    0s
+     0     0   -7.76147    0   22          -   -7.76147      -     -    1s
+
+Explored 1 nodes (1827 simplex iterations) in 1.43 seconds (2.06 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Optimization achieved user objective limit
+Best objective -, best bound -7.761473906291e+00, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 1.7036 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x50-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_2.th', seed=0)
+
+RESUME_|ARCH_2x50-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_2.th'
+=> loaded pretrained arch 97.25, with accuracy '2x50'
+Test: [49/79]	Loss 0.0004 (0.1333) ([0.000]+[0.000])	Prec@1 100.000 (96.672)
+ * Prec@1 97.250
+Model for sequential:
+200 variables
+110 constraints
+100 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0             (1, 50)           50           50            0            0
+
+relu_1               (1, 50)           50            0            0           50
+
+linear_2             (1, 50)           50           50            0            0
+
+relu_3               (1, 50)           50            0            0           50
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1679 rows, 1778 columns and 46230 nonzeros
+Model fingerprint: 0xe6d0156a
+Model has 100 general constraints
+Variable types: 1778 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [2e-06, 2e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [3e-04, 5e+00]
+Presolve removed 1108 rows and 587 columns
+Presolve time: 0.19s
+Presolved: 571 rows, 1191 columns, 43596 nonzeros
+Variable types: 1119 continuous, 72 integer (72 binary)
+
+Root relaxation: objective 6.734397e+02, 438 iterations, 0.01 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  673.43974    0   51          -  673.43974      -     -    0s
+     0     0  671.03090    0   51          -  671.03090      -     -    0s
+     0     0   52.41346    0   40          -   52.41346      -     -    0s
+     0     0   52.41346    0   40          -   52.41346      -     -    1s
+     0     0   -1.38152    0   29          -   -1.38152      -     -    1s
+
+Explored 1 nodes (1863 simplex iterations) in 1.38 seconds (2.04 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Optimization achieved user objective limit
+Best objective -, best bound -1.381515312620e+00, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 1.4489 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x50-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x100-EPOCHS_50-ID_10000/checkpoint_0.th', seed=0)
+
+RESUME_|ARCH_2x100-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x100-EPOCHS_50-ID_10000/checkpoint_0.th'
+=> loaded pretrained arch 97.96, with accuracy '2x100'
+Test: [49/79]	Loss 0.0002 (0.1080) ([0.000]+[0.000])	Prec@1 100.000 (97.516)
+ * Prec@1 97.960
+Model for sequential:
+400 variables
+210 constraints
+200 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 100)          100          100            0            0
+
+relu_1              (1, 100)          100            0            0          100
+
+linear_2            (1, 100)          100          100            0            0
+
+relu_3              (1, 100)          100            0            0          100
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1779 rows, 1978 columns and 93530 nonzeros
+Model fingerprint: 0xcc57633d
+Model has 200 general constraints
+Variable types: 1978 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [8e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e-04, 5e+00]
+Presolve removed 962 rows and 541 columns
+Presolve time: 0.43s
+Presolved: 817 rows, 1437 columns, 90761 nonzeros
+Variable types: 1292 continuous, 145 integer (145 binary)
+
+Root relaxation: objective 7.415100e+02, 733 iterations, 0.04 seconds (0.10 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  741.51002    0  100          -  741.51002      -     -    0s
+     0     0  739.28806    0   97          -  739.28806      -     -    0s
+     0     0  527.94101    0   76          -  527.94101      -     -    1s
+     0     0  522.27769    0   76          -  522.27769      -     -    1s
+     0     0  289.38434    0   70          -  289.38434      -     -    2s
+     0     0  288.23422    0   70          -  288.23422      -     -    3s
+     0     0   76.92892    0   69          -   76.92892      -     -    3s
+     0     0   73.18779    0   69          -   73.18779      -     -    4s
+     0     0   11.89693    0   52          -   11.89693      -     -    5s
+     0     0   11.89693    0   52          -   11.89693      -     -    5s
+     0     0   -6.12166    0   50          -   -6.12166      -     -    5s
+
+Explored 1 nodes (4977 simplex iterations) in 5.91 seconds (9.18 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Optimization achieved user objective limit
+Best objective -, best bound -6.121662964275e+00, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 5.9804 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x100-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x100-EPOCHS_50-ID_10000/checkpoint_1.th', seed=0)
+
+RESUME_|ARCH_2x100-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x100-EPOCHS_50-ID_10000/checkpoint_1.th'
+=> loaded pretrained arch 97.76, with accuracy '2x100'
+Test: [49/79]	Loss 0.0026 (0.1133) ([0.003]+[0.000])	Prec@1 100.000 (97.297)
+ * Prec@1 97.760
+Model for sequential:
+400 variables
+210 constraints
+200 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 100)          100          100            0            0
+
+relu_1              (1, 100)          100            0            0          100
+
+linear_2            (1, 100)          100          100            0            0
+
+relu_3              (1, 100)          100            0            0          100
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1779 rows, 1978 columns and 93530 nonzeros
+Model fingerprint: 0xe7a2198a
+Model has 200 general constraints
+Variable types: 1978 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [4e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e-03, 5e+00]
+Presolve removed 950 rows and 529 columns
+Presolve time: 0.40s
+Presolved: 829 rows, 1449 columns, 90791 nonzeros
+Variable types: 1298 continuous, 151 integer (151 binary)
+
+Root relaxation: objective 8.297311e+02, 793 iterations, 0.05 seconds (0.11 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  829.73112    0  110          -  829.73112      -     -    0s
+     0     0  828.41207    0  110          -  828.41207      -     -    0s
+     0     0  594.88601    0   94          -  594.88601      -     -    1s
+     0     0  589.16471    0   94          -  589.16471      -     -    1s
+     0     0  317.40669    0   76          -  317.40669      -     -    2s
+     0     0  315.82467    0   76          -  315.82467      -     -    3s
+     0     0   65.30905    0   74          -   65.30905      -     -    3s
+     0     0   65.16719    0   74          -   65.16719      -     -    4s
+     0     0   17.64061    0   60          -   17.64061      -     -    5s
+     0     0   17.64061    0   60          -   17.64061      -     -    5s
+     0     0   -1.96811    0   57          -   -1.96811      -     -    6s
+
+Explored 1 nodes (6062 simplex iterations) in 6.17 seconds (9.83 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Optimization achieved user objective limit
+Best objective -, best bound -1.968111115994e+00, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 6.2469 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x100-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x100-EPOCHS_50-ID_10000/checkpoint_2.th', seed=0)
+
+RESUME_|ARCH_2x100-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x100-EPOCHS_50-ID_10000/checkpoint_2.th'
+=> loaded pretrained arch 97.97, with accuracy '2x100'
+Test: [49/79]	Loss 0.0083 (0.0981) ([0.008]+[0.000])	Prec@1 99.219 (97.531)
+ * Prec@1 97.970
+Model for sequential:
+400 variables
+210 constraints
+200 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 100)          100          100            0            0
+
+relu_1              (1, 100)          100            0            0          100
+
+linear_2            (1, 100)          100          100            0            0
+
+relu_3              (1, 100)          100            0            0          100
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1779 rows, 1978 columns and 93530 nonzeros
+Model fingerprint: 0x1cc19909
+Model has 200 general constraints
+Variable types: 1978 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e-03, 5e+00]
+Presolve removed 952 rows and 531 columns
+Presolve time: 0.45s
+Presolved: 827 rows, 1447 columns, 90786 nonzeros
+Variable types: 1297 continuous, 150 integer (150 binary)
+
+Root relaxation: objective 8.279995e+02, 799 iterations, 0.05 seconds (0.12 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  827.99946    0  112          -  827.99946      -     -    0s
+     0     0  818.47322    0  111          -  818.47322      -     -    0s
+     0     0  599.58529    0   93          -  599.58529      -     -    1s
+     0     0  591.57480    0   92          -  591.57480      -     -    2s
+     0     0  344.92822    0   75          -  344.92822      -     -    3s
+     0     0  339.09606    0   75          -  339.09606      -     -    3s
+     0     0  111.68022    0   73          -  111.68022      -     -    4s
+     0     0  111.60929    0   73          -  111.60929      -     -    4s
+     0     0   10.73285    0   55          -   10.73285      -     -    5s
+     0     0   10.73285    0   55          -   10.73285      -     -    5s
+     0     0   -2.06038    0   52          -   -2.06038      -     -    6s
+
+Explored 1 nodes (5160 simplex iterations) in 6.26 seconds (9.37 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Optimization achieved user objective limit
+Best objective -, best bound -2.060381160254e+00, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 6.3366 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x100-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x200-EPOCHS_50-ID_10000/checkpoint_0.th', seed=0)
+
+RESUME_|ARCH_2x200-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x200-EPOCHS_50-ID_10000/checkpoint_0.th'
+=> loaded pretrained arch 98.14, with accuracy '2x200'
+Test: [49/79]	Loss 0.0004 (0.0901) ([0.000]+[0.000])	Prec@1 100.000 (97.750)
+ * Prec@1 98.140
+Model for sequential:
+800 variables
+410 constraints
+400 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 200)          200          200            0            0
+
+relu_1              (1, 200)          200            0            0          200
+
+linear_2            (1, 200)          200          200            0            0
+
+relu_3              (1, 200)          200            0            0          200
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1979 rows, 2378 columns and 203130 nonzeros
+Model fingerprint: 0x8a79249e
+Model has 400 general constraints
+Variable types: 2378 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e-08, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [4e-05, 5e+00]
+Presolve removed 646 rows and 425 columns
+Presolve time: 0.37s
+Presolved: 1333 rows, 1953 columns, 200150 nonzeros
+Variable types: 1650 continuous, 303 integer (303 binary)
+
+Root relaxation: objective 9.625930e+02, 1583 iterations, 0.20 seconds (0.52 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  962.59303    0  211          -  962.59303      -     -    0s
+     0     0  959.97088    0  210          -  959.97088      -     -    1s
+     0     0  900.38292    0  203          -  900.38292      -     -    3s
+     0     0  895.60366    0  198          -  895.60366      -     -    4s
+     0     0  795.07722    0  189          -  795.07722      -     -    6s
+     0     0  791.96624    0  188          -  791.96624      -     -    7s
+H    0     0                     -26.7741708  791.96624  3058%     -   10s
+     0     2  760.52074    0  171  -26.77417  760.52074  2941%     -   10s
+H   96   128                     -26.6231208  669.32215  2614%   133   11s
+H  103   128                     -26.5290960  669.32215  2623%   129   11s
+H 1167  1200                     -24.1648667  669.32215  2870%   102   14s
+  1553  1584  331.51811   26  132  -24.16487  669.32215  2870%  98.2   19s
+H 1560  1584                     -24.1648663  669.32215  2870%  98.2   19s
+H 1562  1584                     -24.1648628  669.32215  2870%  98.3   19s
+H 1571  1584                     -23.9629344  669.32215  2893%  98.0   19s
+  1913  1880  296.17007   30  127  -23.96293  669.32215  2893%  89.8   21s
+H 1937  1880                     -20.2109350  669.32215  3412%  89.1   21s
+  5861  5288   25.89881   87  210  -20.21093  669.32215  3412%  67.5   35s
+H 5862  5024                     -20.2109350  621.60726  3176%  67.5   36s
+  5864  5025  261.82219   41  171  -20.21093  620.94798  3172%  67.5   44s
+  5866  5028  335.08971   30  210  -20.21093  620.94798  3172%  67.7   46s
+  5869  5030   61.11191   23  147  -20.21093   61.11191   402%  67.7   54s
+  5871  5033   61.11191   30  210  -20.21093   61.11191   402%  67.9   56s
+
+Explored 5872 nodes (405061 simplex iterations) in 56.95 seconds (111.59 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 6: -20.2109 -23.9629 -24.1649 ... -26.7742
+
+Optimization achieved user objective limit
+Best objective -2.021093497217e+01, best bound -8.023407192217e+00, gap 60.3017%
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 57.0923 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x200-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x200-EPOCHS_50-ID_10000/checkpoint_1.th', seed=0)
+
+RESUME_|ARCH_2x200-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x200-EPOCHS_50-ID_10000/checkpoint_1.th'
+=> loaded pretrained arch 98.04, with accuracy '2x200'
+Test: [49/79]	Loss 0.0000 (0.0958) ([0.000]+[0.000])	Prec@1 100.000 (97.578)
+ * Prec@1 98.040
+Model for sequential:
+800 variables
+410 constraints
+400 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 200)          200          200            0            0
+
+relu_1              (1, 200)          200            0            0          200
+
+linear_2            (1, 200)          200          200            0            0
+
+relu_3              (1, 200)          200            0            0          200
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1979 rows, 2378 columns and 203130 nonzeros
+Model fingerprint: 0x78abbd19
+Model has 400 general constraints
+Variable types: 2378 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [5e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [3e-05, 5e+00]
+Presolve removed 644 rows and 423 columns
+Presolve time: 0.37s
+Presolved: 1335 rows, 1955 columns, 200156 nonzeros
+Variable types: 1651 continuous, 304 integer (304 binary)
+
+Root relaxation: objective 9.959311e+02, 1708 iterations, 0.19 seconds (0.51 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  995.93113    0  207          -  995.93113      -     -    0s
+     0     0  994.59684    0  207          -  994.59684      -     -    1s
+     0     0  962.43734    0  194          -  962.43734      -     -    2s
+     0     0  955.70961    0  194          -  955.70961      -     -    3s
+     0     0  867.76011    0  189          -  867.76011      -     -    5s
+     0     0  854.84853    0  187          -  854.84853      -     -    5s
+     0     0  776.32258    0  174          -  776.32258      -     -    7s
+     0     0  766.74976    0  174          -  766.74976      -     -    8s
+     0     0  686.96811    0  161          -  686.96811      -     -    9s
+     0     0  685.09397    0  161          -  685.09397      -     -   10s
+     0     0  555.90752    0  157          -  555.90752      -     -   12s
+     0     0  532.66305    0  157          -  532.66305      -     -   13s
+H    0     0                     -18.2044661  532.66305  3026%     -   16s
+     0     2  532.13262    0  154  -18.20447  532.13262  3023%     -   16s
+H  142   160                     -18.1594010  449.70589  2576%  54.5   17s
+  3942  3276    1.41394   62  207  -18.15940  449.70589  2576%  39.2   25s
+  3947  3281  250.74911   14  207  -18.15940  250.74911  1481%  39.5   31s
+  3950  3283   51.05862   55  152  -18.15940   63.70892   451%  39.4   39s
+  3952  3286   63.70892   37  207  -18.15940   63.70892   451%  39.7   41s
+
+Explored 3953 nodes (166770 simplex iterations) in 41.92 seconds (73.31 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 2: -18.1594 -18.2045 
+
+Optimization achieved user objective limit
+Best objective -1.815940098197e+01, best bound -5.017530055036e+00, gap 72.3695%
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 42.0252 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x200-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x200-EPOCHS_50-ID_10000/checkpoint_2.th', seed=0)
+
+RESUME_|ARCH_2x200-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x200-EPOCHS_50-ID_10000/checkpoint_2.th'
+=> loaded pretrained arch 97.95, with accuracy '2x200'
+Test: [49/79]	Loss 0.0002 (0.0949) ([0.000]+[0.000])	Prec@1 100.000 (97.484)
+ * Prec@1 97.950
+Model for sequential:
+800 variables
+410 constraints
+400 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 200)          200          200            0            0
+
+relu_1              (1, 200)          200            0            0          200
+
+linear_2            (1, 200)          200          200            0            0
+
+relu_3              (1, 200)          200            0            0          200
+
+linear_4             (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 1979 rows, 2378 columns and 203130 nonzeros
+Model fingerprint: 0x2a80e5d7
+Model has 400 general constraints
+Variable types: 2378 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [5e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [5e-05, 5e+00]
+Presolve removed 650 rows and 429 columns
+Presolve time: 0.34s
+Presolved: 1329 rows, 1949 columns, 200141 nonzeros
+Variable types: 1648 continuous, 301 integer (301 binary)
+
+Root relaxation: objective 1.007644e+03, 1768 iterations, 0.25 seconds (0.66 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1007.64430    0  211          - 1007.64430      -     -    0s
+     0     0 1002.60328    0  208          - 1002.60328      -     -    1s
+     0     0  942.85437    0  203          -  942.85437      -     -    2s
+     0     0  938.72400    0  202          -  938.72400      -     -    3s
+     0     0  859.02075    0  189          -  859.02075      -     -    5s
+     0     0  853.86864    0  186          -  853.86864      -     -    5s
+     0     0  774.87982    0  182          -  774.87982      -     -    7s
+     0     0  772.74061    0  182          -  772.74061      -     -    8s
+     0     0  652.48710    0  164          -  652.48710      -     -   10s
+     0     0  642.93239    0  164          -  642.93239      -     -   11s
+     0     0  513.71237    0  155          -  513.71237      -     -   13s
+     0     0  504.91114    0  155          -  504.91114      -     -   13s
+H    0     0                     -25.9233560  504.91114  2048%     -   16s
+     0     2  495.67532    0  152  -25.92336  495.67532  2012%     -   16s
+H  159   192                     -25.8388322  383.99240  1586%  55.8   17s
+H  171   192                     -25.6154324  383.99240  1599%  60.2   17s
+H  183   192                     -25.6051298  383.99240  1600%  63.2   17s
+H 1212  1236                     -24.5329302  383.99240  1665%  45.0   19s
+H 1213  1236                     -24.3647083  383.99240  1676%  45.0   19s
+H 1234  1236                     -24.3394900  383.99240  1678%  45.5   19s
+H 1246  1236                     -24.2129945  383.99240  1686%  45.2   19s
+H 1257  1236                     -23.7628335  383.99240  1716%  45.1   19s
+  1287  1307  113.04570   29  114  -23.76283  383.99240  1716%  44.8   20s
+  3170  2643  158.91888   24  208  -23.76283  383.99240  1716%  45.7   26s
+  3173  2645   20.50998   54  150  -23.76283  224.19801  1043%  45.6   31s
+  3178  2650   34.63621   53  149  -23.76283   58.34370   346%  46.0   41s
+
+Explored 3181 nodes (157332 simplex iterations) in 43.42 seconds (76.34 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 4: -23.7628 -25.6154 -25.8388 -25.9234 
+
+Optimization achieved user objective limit
+Best objective -2.376283347860e+01, best bound -4.981330452427e+00, gap 79.0373%
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 43.5281 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_2x200-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_6x100-EPOCHS_50-ID_10000/checkpoint_0.th', seed=0)
+
+RESUME_|ARCH_6x100-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_6x100-EPOCHS_50-ID_10000/checkpoint_0.th'
+=> loaded pretrained arch 97.6, with accuracy '6x100'
+Test: [49/79]	Loss 0.0025 (0.2426) ([0.003]+[0.000])	Prec@1 100.000 (97.156)
+ * Prec@1 97.600
+Model for sequential:
+1200 variables
+610 constraints
+600 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 100)          100          100            0            0
+
+relu_1              (1, 100)          100            0            0          100
+
+linear_2            (1, 100)          100          100            0            0
+
+relu_3              (1, 100)          100            0            0          100
+
+linear_4            (1, 100)          100          100            0            0
+
+relu_5              (1, 100)          100            0            0          100
+
+linear_6            (1, 100)          100          100            0            0
+
+relu_7              (1, 100)          100            0            0          100
+
+linear_8            (1, 100)          100          100            0            0
+
+relu_9              (1, 100)          100            0            0          100
+
+linear_10           (1, 100)          100          100            0            0
+
+relu_11             (1, 100)          100            0            0          100
+
+linear_12            (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 2179 rows, 2778 columns and 133930 nonzeros
+Model fingerprint: 0x1e59dddd
+Model has 600 general constraints
+Variable types: 2778 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [5e-05, 5e+00]
+Presolve added 181 rows and 202 columns
+Presolve time: 0.55s
+Presolved: 2360 rows, 2980 columns, 133852 nonzeros
+Variable types: 2097 continuous, 883 integer (883 binary)
+
+Root relaxation: objective 4.218465e+04, 12570 iterations, 2.30 seconds (4.49 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 42184.6457    0  566          - 42184.6457      -     -    3s
+     0     0 42111.1838    0  566          - 42111.1838      -     -    4s
+     0     0 41793.1782    0  309          - 41793.1782      -     -    6s
+     0     0 41740.7080    0  309          - 41740.7080      -     -    8s
+     0     0 41235.6151    0  306          - 41235.6151      -     -   11s
+     0     0 41231.0182    0  304          - 41231.0182      -     -   13s
+     0     0 40153.4647    0  305          - 40153.4647      -     -   16s
+     0     0 40138.0204    0  305          - 40138.0204      -     -   18s
+     0     0 39234.5962    0  307          - 39234.5962      -     -   21s
+     0     0 39233.8413    0  307          - 39233.8413      -     -   23s
+     0     0 38131.2488    0  307          - 38131.2488      -     -   27s
+     0     0 36757.2630    0  307          - 36757.2630      -     -   29s
+     0     0 36385.2747    0  310          - 36385.2747      -     -   33s
+     0     0 36378.8905    0  306          - 36378.8905      -     -   35s
+     0     0 33984.7830    0  300          - 33984.7830      -     -   40s
+     0     0 32744.1610    0  300          - 32744.1610      -     -   42s
+     0     0 30236.4292    0  305          - 30236.4292      -     -   47s
+     0     0 30236.4195    0  305          - 30236.4195      -     -   48s
+     0     0 26604.8341    0  300          - 26604.8341      -     -   54s
+     0     0 26588.4496    0  300          - 26588.4496      -     -   56s
+     0     0 24915.3558    0  302          - 24915.3558      -     -   61s
+     0     0 24909.3608    0  297          - 24909.3608      -     -   63s
+     0     0 19673.3418    0  295          - 19673.3418      -     -   69s
+     0     0 19672.2921    0  295          - 19672.2921      -     -   71s
+     0     0 18132.9879    0  299          - 18132.9879      -     -   77s
+     0     0 18123.8220    0  297          - 18123.8220      -     -   78s
+     0     0 15876.7538    0  304          - 15876.7538      -     -   85s
+     0     0 15778.7682    0  304          - 15778.7682      -     -   86s
+     0     0 15048.6001    0  299          - 15048.6001      -     -   94s
+     0     0 15044.2785    0  299          - 15044.2785      -     -   95s
+     0     0 3526.76690    0  281          - 3526.76690      -     -  101s
+     0     0 3526.14334    0  281          - 3526.14334      -     -  102s
+     0     0 1693.58627    0  275          - 1693.58627      -     -  108s
+     0     0 1692.31725    0  275          - 1692.31725      -     -  109s
+     0     0 1140.52417    0  265          - 1140.52417      -     -  118s
+     0     0 1135.90589    0  265          - 1135.90589      -     -  118s
+     0     0 1052.60201    0  263          - 1052.60201      -     -  122s
+     0     0 1051.58121    0  263          - 1051.58121      -     -  123s
+     0     0  614.54353    0  264          -  614.54353      -     -  132s
+     0     0  614.47237    0  264          -  614.47237      -     -  133s
+     0     0  557.68751    0  268          -  557.68751      -     -  143s
+     0     0  555.02643    0  268          -  555.02643      -     -  144s
+     0     0  542.64075    0  268          -  542.64075      -     -  148s
+     0     0  542.63302    0  268          -  542.63302      -     -  149s
+     0     0  506.44690    0  262          -  506.44690      -     -  159s
+     0     0  505.74784    0  262          -  505.74784      -     -  160s
+     0     0  505.74784    0  259          -  505.74784      -     -  162s
+     0     0  505.74784    0  259          -  505.74784      -     -  163s
+     0     0  355.66527    0  258          -  355.66527      -     -  172s
+     0     0  355.60894    0  258          -  355.60894      -     -  173s
+     0     0  349.14220    0  247          -  349.14220      -     -  178s
+     0     0  344.55405    0  247          -  344.55405      -     -  179s
+     0     0          -    0               -  344.55405      -     -  180s
+
+Explored 1 nodes (82242 simplex iterations) in 180.00 seconds (331.41 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Time limit reached
+Best objective -, best bound 3.445540542824e+02, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 180.0993 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_6x100-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_6x100-EPOCHS_50-ID_10000/checkpoint_1.th', seed=0)
+
+RESUME_|ARCH_6x100-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_6x100-EPOCHS_50-ID_10000/checkpoint_1.th'
+=> loaded pretrained arch 97.77, with accuracy '6x100'
+Test: [49/79]	Loss 0.0001 (0.1956) ([0.000]+[0.000])	Prec@1 100.000 (97.391)
+ * Prec@1 97.770
+Model for sequential:
+1200 variables
+610 constraints
+600 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 100)          100          100            0            0
+
+relu_1              (1, 100)          100            0            0          100
+
+linear_2            (1, 100)          100          100            0            0
+
+relu_3              (1, 100)          100            0            0          100
+
+linear_4            (1, 100)          100          100            0            0
+
+relu_5              (1, 100)          100            0            0          100
+
+linear_6            (1, 100)          100          100            0            0
+
+relu_7              (1, 100)          100            0            0          100
+
+linear_8            (1, 100)          100          100            0            0
+
+relu_9              (1, 100)          100            0            0          100
+
+linear_10           (1, 100)          100          100            0            0
+
+relu_11             (1, 100)          100            0            0          100
+
+linear_12            (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 2179 rows, 2778 columns and 133930 nonzeros
+Model fingerprint: 0xe96f9bbd
+Model has 600 general constraints
+Variable types: 2778 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [6e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [5e-05, 5e+00]
+Presolve added 176 rows and 197 columns
+Presolve time: 0.61s
+Presolved: 2355 rows, 2975 columns, 133840 nonzeros
+Variable types: 2095 continuous, 880 integer (880 binary)
+
+Root relaxation: objective 3.372406e+04, 12795 iterations, 2.26 seconds (4.55 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 33724.0604    0  549          - 33724.0604      -     -    3s
+     0     0 33531.9351    0  549          - 33531.9351      -     -    4s
+     0     0 23541.9694    0  294          - 23541.9694      -     -    7s
+     0     0 23541.9562    0  294          - 23541.9562      -     -    8s
+     0     0 22818.5016    0  293          - 22818.5016      -     -   11s
+     0     0 22815.8103    0  293          - 22815.8103      -     -   13s
+     0     0 21938.1964    0  286          - 21938.1964      -     -   15s
+     0     0 21936.6964    0  284          - 21936.6964      -     -   17s
+     0     0 21610.6489    0  283          - 21610.6489      -     -   20s
+     0     0 21599.4709    0  283          - 21599.4709      -     -   22s
+     0     0 21109.6342    0  287          - 21109.6342      -     -   25s
+     0     0 21102.8323    0  284          - 21102.8323      -     -   27s
+     0     0 19689.7954    0  280          - 19689.7954      -     -   31s
+     0     0 19647.3173    0  280          - 19647.3173      -     -   33s
+     0     0 18774.2884    0  282          - 18774.2884      -     -   37s
+     0     0 18768.6449    0  282          - 18768.6449      -     -   38s
+     0     0 17282.0984    0  285          - 17282.0984      -     -   43s
+     0     0 17278.4943    0  285          - 17278.4943      -     -   44s
+     0     0 16469.0861    0  284          - 16469.0861      -     -   48s
+     0     0 16467.4659    0  285          - 16467.4659      -     -   50s
+     0     0 14971.8431    0  287          - 14971.8431      -     -   55s
+     0     0 14936.3523    0  287          - 14936.3523      -     -   57s
+     0     0 14340.6245    0  288          - 14340.6245      -     -   63s
+     0     0 14339.6586    0  288          - 14339.6586      -     -   64s
+     0     0 3382.38035    0  270          - 3382.38035      -     -   69s
+     0     0 3382.36815    0  270          - 3382.36815      -     -   70s
+     0     0 1801.22257    0  272          - 1801.22257      -     -   76s
+     0     0 1800.07321    0  272          - 1800.07321      -     -   77s
+     0     0 1515.21152    0  271          - 1515.21152      -     -   84s
+     0     0 1514.02853    0  271          - 1514.02853      -     -   85s
+     0     0 1046.70521    0  267          - 1046.70521      -     -   93s
+     0     0 1046.60928    0  267          - 1046.60928      -     -   94s
+     0     0  879.64897    0  264          -  879.64897      -     -  100s
+     0     0  879.04784    0  264          -  879.04784      -     -  101s
+     0     0  664.86110    0  264          -  664.86110      -     -  109s
+     0     0  654.23146    0  264          -  654.23146      -     -  110s
+     0     0  654.23146    0  260          -  654.23146      -     -  111s
+     0     0  654.23146    0  260          -  654.23146      -     -  112s
+     0     0  443.78416    0  253          -  443.78416      -     -  117s
+     0     0  443.67755    0  253          -  443.67755      -     -  118s
+     0     0  377.98484    0  256          -  377.98484      -     -  122s
+     0     0  377.70834    0  256          -  377.70834      -     -  123s
+     0     0  281.75709    0  254          -  281.75709      -     -  132s
+     0     0  281.57656    0  254          -  281.57656      -     -  132s
+     0     0  278.48393    0  253          -  278.48393      -     -  135s
+     0     0  278.37224    0  253          -  278.37224      -     -  135s
+     0     0  278.11128    0  253          -  278.11128      -     -  136s
+     0     0  277.99657    0  253          -  277.99657      -     -  137s
+     0     0  276.73999    0  251          -  276.73999      -     -  147s
+     0     0  276.66236    0  251          -  276.66236      -     -  147s
+     0     0  275.33961    0  251          -  275.33961      -     -  149s
+     0     0  275.30668    0  251          -  275.30668      -     -  149s
+     0     0  175.82839    0  247          -  175.82839      -     -  158s
+     0     0  175.78026    0  247          -  175.78026      -     -  158s
+     0     0  162.24581    0  238          -  162.24581      -     -  169s
+     0     0  162.17331    0  238          -  162.17331      -     -  169s
+     0     0  138.55866    0  233          -  138.55866      -     -  179s
+     0     0  138.52575    0  233          -  138.52575      -     -  179s
+
+Explored 1 nodes (88281 simplex iterations) in 180.00 seconds (330.41 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Time limit reached
+Best objective -, best bound 1.385257505499e+02, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 180.1183 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_6x100-EPOCHS_50-ID_10000|checkpoint_1.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_6x100-EPOCHS_50-ID_10000/checkpoint_2.th', seed=0)
+
+RESUME_|ARCH_6x100-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_6x100-EPOCHS_50-ID_10000/checkpoint_2.th'
+=> loaded pretrained arch 97.67, with accuracy '6x100'
+Test: [49/79]	Loss 0.0407 (0.2446) ([0.041]+[0.000])	Prec@1 99.219 (97.156)
+ * Prec@1 97.670
+Model for sequential:
+1200 variables
+610 constraints
+600 general constraints
+Input has shape (1, 784)
+Output has shape (1, 10)
+
+--------------------------------------------------------------------------------
+Layer           Output Shape    Variables              Constraints              
+                                                Linear    Quadratic      General
+================================================================================
+linear_0            (1, 100)          100          100            0            0
+
+relu_1              (1, 100)          100            0            0          100
+
+linear_2            (1, 100)          100          100            0            0
+
+relu_3              (1, 100)          100            0            0          100
+
+linear_4            (1, 100)          100          100            0            0
+
+relu_5              (1, 100)          100            0            0          100
+
+linear_6            (1, 100)          100          100            0            0
+
+relu_7              (1, 100)          100            0            0          100
+
+linear_8            (1, 100)          100          100            0            0
+
+relu_9              (1, 100)          100            0            0          100
+
+linear_10           (1, 100)          100          100            0            0
+
+relu_11             (1, 100)          100            0            0          100
+
+linear_12            (1, 10)            0           10            0            0
+
+--------------------------------------------------------------------------------
+Set parameter BestBdStop to value 0
+Set parameter BestObjStop to value 0
+Set parameter TimeLimit to value 180
+Set parameter OBBT to value 3
+Set parameter Cuts to value 0
+Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (linux64)
+
+CPU model: AMD EPYC 7402 24-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 48 physical cores, 96 logical processors, using up to 32 threads
+
+Optimize a model with 2179 rows, 2778 columns and 133930 nonzeros
+Model fingerprint: 0x041262cd
+Model has 600 general constraints
+Variable types: 2778 continuous, 0 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [8e-07, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [2e-05, 5e+00]
+Presolve added 132 rows and 153 columns
+Presolve time: 0.59s
+Presolved: 2311 rows, 2931 columns, 133744 nonzeros
+Variable types: 2087 continuous, 844 integer (844 binary)
+
+Root relaxation: objective 2.656685e+04, 7454 iterations, 1.22 seconds (2.52 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 26566.8468    0  499          - 26566.8468      -     -    1s
+     0     0 26566.8468    0  499          - 26566.8468      -     -    2s
+     0     0 26346.8969    0  298          - 26346.8969      -     -    4s
+     0     0 26126.0847    0  298          - 26126.0847      -     -    6s
+     0     0 25123.8271    0  300          - 25123.8271      -     -    8s
+     0     0 25095.2109    0  298          - 25095.2109      -     -    9s
+     0     0 24679.6948    0  298          - 24679.6948      -     -   12s
+     0     0 24377.5508    0  298          - 24377.5508      -     -   14s
+     0     0 16853.0982    0  279          - 16853.0982      -     -   17s
+     0     0 16849.9616    0  279          - 16849.9616      -     -   18s
+     0     0 3566.93922    0  282          - 3566.93922      -     -   22s
+     0     0 3566.35517    0  282          - 3566.35517      -     -   24s
+     0     0 2155.64158    0  268          - 2155.64158      -     -   27s
+     0     0 2154.18473    0  268          - 2154.18473      -     -   28s
+     0     2 2153.11502    0  268          - 2153.11502      -     -   35s
+    63    96 1669.06879    6  268          - 1696.57220      -  1477   40s
+   294   333 1383.71280   11  263          - 1668.07441      -  1121   45s
+   740   785  938.43165   24  240          - 1668.07441      -   917   50s
+  1276  1408  783.32421   36  226          - 1668.07441      -   891   55s
+  2097  2187  492.79494   51  211          - 1668.07441      -   815   60s
+  3094  3284  313.99378   73  194          - 1668.07441      -   774   65s
+  4688  4949  117.05070  109  151          - 1668.07441      -   705   70s
+  6049  6403 infeasible  151               - 1668.07441      -   668   75s
+  7597  7956  -24.11913  212   81          - 1591.64522      -   623   80s
+  9573 10111  920.84615   30  248          - 1460.54285      -   576   85s
+ 11656 12281  496.76076   52  209          - 1460.54285      -   532   90s
+ 13979 14603  409.83515   83  206          - 1460.54285      -   498   95s
+ 14838 14606  390.07394   28  266          - 1460.54285      -   488  109s
+ 14840 14609   12.39187   85  499          - 1460.54285      -   488  110s
+ 14843 14611   71.58566  164  263          -  940.16625      -   488  122s
+ 14847 14615   33.87736   99  241          -  482.06325      -   488  126s
+ 14848 14616   -5.79033  113  241          -  482.06325      -   488  141s
+ 14853 14621  234.04336    9  242          -  234.04336      -   488  155s
+ 14863 14631  135.61069   58  222          -  215.86161      -   488  171s
+ 14872 14640  114.82056   39  209          -  114.82056      -   488  176s
+
+Explored 14879 nodes (7284429 simplex iterations) in 180.02 seconds (422.68 work units)
+Thread count was 32 (of 96 available processors)
+
+Solution count 0
+
+Time limit reached
+Best objective -, best bound 1.141273055561e+02, gap -
+No counter example exists in neighborhood.
+Time elapsed for full adv. : 180.1132 sec
+
+Saved to ./res/GRID/OBBT_3/RESUME_|ARCH_6x100-EPOCHS_50-ID_10000|checkpoint_2.th-ID_10000-OBBT_3-CUTS_0.csv.
+
+
+
+===================================================================
+===================================================================
+
+

@@ -1,5 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
+from time import time
 
 import torch
 import torchvision
@@ -48,7 +49,12 @@ def adversarial(model, config):
     m.Params.BestBdStop = 0.0
     m.Params.BestObjStop = 0.0
     m.setParam('TimeLimit', config.time)
+    m.Params.OBBT = config.obbt
+    m.Params.cuts = config.cuts
     m.optimize()
+    elapsed = m.Runtime
+    nodes = m.NodeCount
+
 
     if m.ObjVal > 0.0:
         plt.imshow(x.X.reshape((28, 28)), cmap="gray")
@@ -57,4 +63,6 @@ def adversarial(model, config):
         print(f"Solution is classified as {label}")
     else:
         print("No counter example exists in neighborhood.")
+    
+    return elapsed , nodes
 

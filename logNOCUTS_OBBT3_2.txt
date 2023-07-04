@@ -1,0 +1,47 @@
+===================================================================
+===================================================================
+
+Experiments configuration:
+Namespace(trainonly=False, prune=False, expnum=1, dont_save=False, arch='2x50', path='./res/GRID/OBBT_3-CUTS_0', save_path='./saved_models', epochs=50, optim='sgd', lr=0.1, wd=0.0, momentum=0.0, batch_size=128, print_freq=100, reg='spr', lamb=0.0, alpha=0.0, M='layer', dim=1, ft_epochs=10, threshold=0.05, threshold_str=0.005, samp_id=10000, time=180, obbt=3, cuts=0, pretrained_path='./saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_0.th')
+
+RESUME_|ARCH_2x50-EPOCHS_50-ID_10000|checkpoint_0.th-ID_10000-OBBT_3-CUTS_0
+===============================================================
+Experiment 0:
+===============================================================
+
+=> loading pretrained model from './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_0.th'
+=> loaded pretrained arch 97.55, with accuracy '2x50'
+Traceback (most recent call last):
+  File "/local1/caccmatt/Pruning_for_MIP/my_gurobi-machinelearning/main2.py", line 189, in <module>
+    run(setting)
+  File "/local1/caccmatt/Pruning_for_MIP/my_gurobi-machinelearning/experiment.py", line 66, in run
+    trainer.validate(dataset,model,config,reg_on=False)
+  File "/local1/caccmatt/Pruning_for_MIP/my_gurobi-machinelearning/modeltraining/trainer.py", line 108, in validate
+    for i, (input, target) in enumerate(dataset["valid_loader"]):
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/_utils.py", line 644, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in pin memory thread for device 0.
+Original Traceback (most recent call last):
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/utils/data/_utils/pin_memory.py", line 34, in do_one_step
+    data = pin_memory(data, device)
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/utils/data/_utils/pin_memory.py", line 70, in pin_memory
+    return type(data)([pin_memory(sample, device) for sample in data])  # type: ignore[call-arg]
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/utils/data/_utils/pin_memory.py", line 70, in <listcomp>
+    return type(data)([pin_memory(sample, device) for sample in data])  # type: ignore[call-arg]
+  File "/home/caccmatt/.local/lib/python3.9/site-packages/torch/utils/data/_utils/pin_memory.py", line 55, in pin_memory
+    return data.pin_memory(device)
+RuntimeError: CUDA error: CUDA-capable device(s) is/are busy or unavailable
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/home/x86_64-unknown-linux_ol8-gnu/anaconda-2022.10/lib/python3.9/threading.py", line 980, in _bootstrap_inner

@@ -119,14 +119,22 @@ parser.add_argument("--time",
                 type=float,
                 default=180,
                 help="mip time limit")
+parser.add_argument("--obbt",
+                type=int,
+                default=-1,
+                help="OBBT gurobi parameter")
+parser.add_argument("--cuts",
+            type=int,
+            default=-1,
+            help="cuts gurobi parameter")
 setting = parser.parse_args()
 
 
 # config setting
-confset = {'arch':['2x50','2x100', '2x200', '6x100'],
+confset = {'arch':['2x50','2x100'],
            'reg':['spr'],
-           'lamb':[0.1, 0.5, 1.0],
-           'alpha':[0.1, 0.5, 0.9],
+           'lamb':[0.5],
+           'alpha':[0.9],
            'thr':[5e-2],
            'thr_str':[5e-3],
            'id':[10000]}
@@ -134,15 +142,17 @@ confset = {'arch':['2x50','2x100', '2x200', '6x100'],
 
 
 path_bkp = setting.save_path
+setting.prune = True
 for arch, reg, lamb, alpha, thr, thr_str, id in itertools.product(*tuple(confset.values())):
     # set config
-    setting.arch =arch
-    setting.reg =reg
+    setting.arch = arch
+    setting.reg = reg
     setting.lamb = lamb
     setting.alpha = alpha
-    setting.threshold =thr
+    setting.threshold = thr
     setting.threshold_str = thr_str
     setting.samp_id = id
+    if arch =='6x500': setting.time = 1800
 
     print("===================================================================")
     print("===================================================================")

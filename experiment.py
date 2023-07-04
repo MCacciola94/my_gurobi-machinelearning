@@ -25,7 +25,7 @@ def run(config):
         df = pd.read_csv(save_path)
         skip = True # skip flag
     else:
-        df = pd.DataFrame(columns=["Acc", "Loss", "Elapsed", "Epochs"])
+        df = pd.DataFrame(columns=["Acc", "Loss", "Elapsed", "Nodes", "Arch"])
         skip = False # skip flag
 
     for i in range(config.expnum):
@@ -62,28 +62,48 @@ def run(config):
         elif os.path.isfile(config.pretrained_path):
                 # load checkpoint
                 model, acc, loss = utils.load_chkpt(config.pretrained_path)
+                dataset = trainer.get_data(config)
+                trainer.validate(dataset,model,config,reg_on=False)
+                # from modeltraining import pruningutils as pu
+                # from modeltraining.modelcompression.compress_model import compress_sequential
+                # compress_sequential(model)
+                # pruned_arch = pu.retrive_arch(model)
+                # s_path = "ARCH_{}-EPOCHS_50-REG_spr-LAMB_{}-ALPHA_{}-FT_10-ID_10000".format(config.arch, config.lamb,config.alpha)
+                # s_path = './saved_models/'+s_path
+                # filename = os.path.join(s_path, 'checkpointRED_1RP_2.th')
+                # trainer.save_checkpoint({
+                #         'state_dict': model.state_dict(),
+                #         'best_prec1': acc,
+                #         'arch': pruned_arch,
+                #         'loss': loss
+                #     }, filename=filename)
+                # trainer.validate(dataset,model,config,reg_on=False)
+                
         else:
             print("=> no checkpoint found at '{}'".format(config.pretrained_path))
             return 0
         
+        arch = pu.retrive_arch(model)
         # if no adversarial part is needed elapsed is -1
-        elapsed = -1 
+        elapsed_adv = -1 
+        elapsed = -1
+        nodes = -1
         if not config.trainonly:
             # reformat the name of the model parms so it works with the gurobi pkg (if needed)
             pu.rm_add_par(model)
             tick = time()
             # adversarial part of the experiment
-            adversarial(model, config)
+            elapsed, nodes = adversarial(model, config)
             tock = time()
-            elapsed = tock - tick
+            elapsed_adv = tock - tick
 
         # printing and saving
-        print("Time elapsed: {:.4f} sec".format(elapsed))
+        print("Time elapsed for full adv. : {:.4f} sec".format(elapsed_adv))
         print()
         # save
 
         row = {"Acc":acc,"Loss":loss.item(),
-               "Elapsed":elapsed, "Epochs":config.epochs}
+               "Elapsed":elapsed, "Nodes": nodes, "Arch":arch}
         df = df.append(row, ignore_index=True)
         if not config.dont_save:
             df.to_csv(save_path, index=False)
@@ -210,6 +230,14 @@ if __name__ == "__main__":
                     type=float,
                     default=180,
                     help="mip time limit")
+    parser.add_argument("--obbt",
+                    type=int,
+                    default=-1,
+                    help="OBBT gurobi parameter")
+    parser.add_argument("--cuts",
+                type=int,
+                default=-1,
+                help="cuts gurobi parameter")
     
     # get configuration
     config = parser.parse_args()
