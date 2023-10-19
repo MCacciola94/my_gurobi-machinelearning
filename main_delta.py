@@ -3,7 +3,7 @@ import argparse
 import itertools
 
 
-from experiment import run
+from experiment_delta import run
 
 # set parser
 parser = argparse.ArgumentParser()
@@ -29,10 +29,6 @@ parser.add_argument("--dont_save",
 #                     help="architecture of the model")
 
 # paths configurations
-parser.add_argument("--pretrained_path",
-                    type=str,
-                    default="",
-                    help="path to pretrained model")
 parser.add_argument("--path",
                     type=str,
                     default="./res/GRID/last",
@@ -130,31 +126,66 @@ parser.add_argument("--cuts",
 setting = parser.parse_args()
 
 
+
 # config setting
-confset = {'arch':['2x50'],
-           'reg':['spr'],
-           'lamb':[0.5],
-           'alpha':[0.9],
-           'thr':[5e-2],
-           'thr_str':[5e-3],
-           'id':[10000],
+paths = []
+
+# b_paht = './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpoint_'+str(i)+'.th'
+#     paths.append(c_path)
+
+# b_paht = './saved_models/ARCH_2x100-EPOCHS_50-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpoint_'+str(i)+'.th'
+#     paths.append(c_path)
+
+# b_paht = './saved_models/ARCH_2x200-EPOCHS_50-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpoint_'+str(i)+'.th'
+#     paths.append(c_path)
+
+# b_paht = './saved_models/ARCH_6x100-EPOCHS_50-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpoint_'+str(i)+'.th'
+#     paths.append(c_path)
+    
+b_paht = './saved_models/ARCH_2x50-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.9-FT_10-ID_10000/'
+for i in range(3):
+    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+    paths.append(c_path)
+
+b_paht = './saved_models/ARCH_2x100-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.9-FT_10-ID_10000/'
+for i in range(3):
+    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+    paths.append(c_path)
+
+b_paht = './saved_models/ARCH_2x200-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.5-FT_10-ID_10000/'
+for i in range(3):
+    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+    paths.append(c_path)
+
+b_paht = './saved_models/ARCH_6x100-EPOCHS_50-REG_spr-LAMB_1.0-ALPHA_0.1-FT_10-ID_10000/'
+for i in range(3):
+    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+    paths.append(c_path)
+
+base_path = './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/checkpoint_'
+# config setting
+confset = {'paths': paths,
+            'id':[10000],
            'delta':[20]}
 
 
 
 path_bkp = setting.save_path
 # setting.prune = True
-for arch, reg, lamb, alpha, thr, thr_str, id, delta in itertools.product(*tuple(confset.values())):
+for path, id, delta in itertools.product(*tuple(confset.values())):
     # set config
-    setting.arch = arch
-    setting.reg = reg
-    setting.lamb = lamb
-    setting.alpha = alpha
-    setting.threshold = thr
-    setting.threshold_str = thr_str
+    setting.pretrained_path = path
     setting.samp_id = id
     setting.delta = delta
-    if arch =='6x500': setting.time = 1800
+    setting.base_model_path = path.split('-REG')[0] + '-ID_10000/checkpoint_'
 
     print("===================================================================")
     print("===================================================================")

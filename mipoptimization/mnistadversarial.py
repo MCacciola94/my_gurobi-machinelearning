@@ -23,12 +23,13 @@ def adversarial(model, config):
     sorted_labels = torch.argsort(ex_prob)
     right_label = sorted_labels[-1]
     wrong_label = sorted_labels[-2]
+    print('Correct label is ', right_label, ' || Wrong label is ', wrong_label)
 
     image = flat_img.numpy()  # We need numpy converted image
 
 
     m = gp.Model()
-    delta = 5
+    delta = config.delta
 
     x = m.addMVar(image.shape, lb=0.0, ub=1.0, name="x")
     y = m.addMVar(ex_prob.detach().numpy().shape, lb=-gp.GRB.INFINITY, name="y")
@@ -58,11 +59,14 @@ def adversarial(model, config):
 
     if m.ObjVal > 0.0:
         plt.imshow(x.X.reshape((28, 28)), cmap="gray")
+        plt.savefig('counter_example.png')
         x_input = torch.tensor(x.X.reshape(1, -1), dtype=torch.float32)
         label = torch.argmax(model.forward(x_input))
         print(f"Solution is classified as {label}")
+        counter_ex = {'input':flat_img,'input_adv': x_input, 'adv_label': label, 'right_label': right_label,'target_label':wrong_label}
     else:
+        counter_ex = None
         print("No counter example exists in neighborhood.")
     
-    return elapsed , nodes
+    return elapsed , nodes, counter_ex
 

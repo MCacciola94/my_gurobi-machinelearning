@@ -100,11 +100,43 @@ def run(config):
         # printing and saving
         print("Time elapsed for full adv. : {:.4f} sec".format(elapsed_adv))
         print()
+
+        for i in '012':
+            print('-----------------------------------------------')
+            print('-----------------------------------------------')
+
+            print('checkpoint number '+ i)
+            base_path = config.base_model_path+i+'.th'
+            base_model, acc1, loss1 = utils.load_chkpt(base_path)
+            dataset = trainer.get_data(config)
+            trainer.validate(dataset,base_model,config,reg_on=False)
+
+            if counter_ex is not None:
+                base_label_inp = torch.argmax(model.forward(counter_ex['input']))
+                base_label_adv = torch.argmax(model.forward(counter_ex['input_adv']))
+
+                print('PRUNED LABEL', counter_ex['right_label'].item() )
+                print('Pruned adv', counter_ex['adv_label'].item()  )
+                print('target label', counter_ex['target_label'].item()  )
+                print('base label', base_label_inp.item()  )
+                print('base label adv', base_label_adv.item() )
+
+
+        # breakpoint()
+
+
+
+        print('-----------------------------------------------')
+        print('-----------------------------------------------')
+
         # save
 
         row = {"Acc":acc,"Loss":loss.item(),
                "Elapsed":elapsed, "Nodes": nodes, "Arch":arch}
         print(row)
+        print(config.pretrained_path)
+
+        
         df = df.append(row, ignore_index=True)
         if not config.dont_save:
             df.to_csv(save_path, index=False)
@@ -145,6 +177,10 @@ if __name__ == "__main__":
                         type=str,
                         default="",
                         help="path to pretrained model")
+    parser.add_argument("--base_model_path",
+                        type=str,
+                        default="",
+                        help="path to the unpruned model")
     parser.add_argument("--path",
                         type=str,
                         default="./res/last",

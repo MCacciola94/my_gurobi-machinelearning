@@ -1,0 +1,8 @@
+usage: main_delta.py [-h] [--trainonly] [--prune] [--expnum EXPNUM]
+                     [--dont_save] [--path PATH] [--save_path SAVE_PATH]
+                     [--epochs EPOCHS] [--optim {sgd,adam}] [--lr LR]
+                     [--wd WD] [--momentum MOMENTUM] [--batch_size BATCH_SIZE]
+                     [--print_freq PRINT_FREQ] [--M {layer,param}]
+                     [--dim {0,1}] [--ft_epochs FT_EPOCHS] [--time TIME]
+                     [--obbt OBBT] [--cuts CUTS]
+main_delta.py: error: unrecognized arguments: --delta 20

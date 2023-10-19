@@ -119,6 +119,10 @@ parser.add_argument("--time",
                 type=float,
                 default=180,
                 help="mip time limit")
+parser.add_argument("--delta",
+            type=float,
+            default=5.0,
+            help="bounding region for the adversarial search")
 parser.add_argument("--obbt",
                 type=int,
                 default=-1,
@@ -134,15 +138,15 @@ setting = parser.parse_args()
 # config setting
 paths = []
 
-b_paht = './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/'
-for i in range(3):
-    c_path = b_paht+'checkpoint_'+str(i)+'.th'
-    paths.append(c_path)
+# b_paht = './saved_models/ARCH_2x50-EPOCHS_50-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpoint_'+str(i)+'.th'
+#     paths.append(c_path)
 
-b_paht = './saved_models/ARCH_2x100-EPOCHS_50-ID_10000/'
-for i in range(3):
-    c_path = b_paht+'checkpoint_'+str(i)+'.th'
-    paths.append(c_path)
+# b_paht = './saved_models/ARCH_2x100-EPOCHS_50-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpoint_'+str(i)+'.th'
+#     paths.append(c_path)
 
 b_paht = './saved_models/ARCH_2x200-EPOCHS_50-ID_10000/'
 for i in range(3):
@@ -154,27 +158,30 @@ for i in range(3):
     c_path = b_paht+'checkpoint_'+str(i)+'.th'
     paths.append(c_path)
     
-b_paht = './saved_models/ARCH_2x50-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.9-FT_10-ID_10000/'
-for i in range(3):
-    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
-    paths.append(c_path)
+# b_paht = './saved_models/ARCH_2x50-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.9-FT_10-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+#     paths.append(c_path)
 
-b_paht = './saved_models/ARCH_2x100-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.9-FT_10-ID_10000/'
-for i in range(3):
-    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
-    paths.append(c_path)
+# b_paht = './saved_models/ARCH_2x100-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.9-FT_10-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+#     paths.append(c_path)
 
-b_paht = './saved_models/ARCH_2x200-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.5-FT_10-ID_10000/'
-for i in range(3):
-    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
-    paths.append(c_path)
+# b_paht = './saved_models/ARCH_2x200-EPOCHS_50-REG_spr-LAMB_0.5-ALPHA_0.5-FT_10-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+#     paths.append(c_path)
 
-b_paht = './saved_models/ARCH_6x100-EPOCHS_50-REG_spr-LAMB_1.0-ALPHA_0.1-FT_10-ID_10000/'
-for i in range(3):
-    c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
-    paths.append(c_path)
+# b_paht = './saved_models/ARCH_6x100-EPOCHS_50-REG_spr-LAMB_1.0-ALPHA_0.1-FT_10-ID_10000/'
+# for i in range(3):
+#     c_path = b_paht+'checkpointRED_1RP_'+str(i)+'.th'
+#     paths.append(c_path)
 
-setting.path = setting.path+'/OBBT_' + str(setting.obbt)+'-CUTS_' + str(setting.cuts)
+extra_path = './saved_models/ARCH_6x100-EPOCHS_50-REG_spr-LAMB_1.0-ALPHA_0.1-FT_10-ID_10000/checkpointRED_1RP_0.th'
+paths.append(extra_path)
+
+setting.path = setting.path+'/OBBT_' + str(setting.obbt)+'-CUTS_' + str(setting.cuts)+'-TIME_'+str(setting.time)
 for name in paths:
     # set config
     setting.pretrained_path = name
