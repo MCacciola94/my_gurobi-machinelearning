@@ -31,14 +31,37 @@ def get_data(config = None):
         batch_size =128
     else:
         batch_size=config.batch_size
-    train_dataset = torchvision.datasets.MNIST(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=True,
-                                        transform=transforms.ToTensor(), download=True)
-    test_dataset = torchvision.datasets.MNIST(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=False,
-                                            transform=transforms.ToTensor(), download=False)
-    train_loader = torch.utils.data.DataLoader(dataset=train_dataset,batch_size=batch_size,
-                                            shuffle=True,num_workers=8, pin_memory=True)
-    test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size,
-                                            shuffle=False,num_workers=8, pin_memory=True)
+    if config is None or config.dataset == 'MNIST':
+        train_dataset = torchvision.datasets.MNIST(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=True,
+                                            transform=transforms.ToTensor(), download=True)
+        test_dataset = torchvision.datasets.MNIST(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=False,
+                                                transform=transforms.ToTensor(), download=False)
+        train_loader = torch.utils.data.DataLoader(dataset=train_dataset,batch_size=batch_size,
+                                                shuffle=True,num_workers=8, pin_memory=True)
+        test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size,
+                                                shuffle=False,num_workers=8, pin_memory=True)
+    elif config.dataset == 'Cifar10':
+        normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                        std=[0.229, 0.224, 0.225])
+        train_dataset = torchvision.datasets.CIFAR10(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=True,
+                                            transform=transforms.Compose([
+                                                                    transforms.RandomHorizontalFlip(),
+                                                                    transforms.RandomCrop(32, 4),
+                                                                    transforms.ToTensor(),
+                                                                    normalize,
+                                                                ]), download=True)
+        test_dataset = torchvision.datasets.CIFAR10(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=False,
+                                                transform=transforms.Compose([
+                                                                    transforms.ToTensor(),
+                                                                    normalize,
+                                                                ]), download=True)
+        train_loader = torch.utils.data.DataLoader(dataset=train_dataset,batch_size=batch_size,
+                                                shuffle=True,num_workers=4, pin_memory=True)
+        test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size,
+                                                shuffle=False,num_workers=4, pin_memory=True)
+    else:
+        print('Dataset not available, aborting')
+        return 0
     
     return {'train_loader': train_loader, "valid_loader": test_loader}
 
