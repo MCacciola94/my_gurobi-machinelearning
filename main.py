@@ -138,7 +138,7 @@ confset = {'arch':['2x50'],
            'thr':[5e-2],
            'thr_str':[5e-3],
            'id':[10000],
-           'delta':[20]}
+           'delta':[5]}
 
 
 
