@@ -12,18 +12,51 @@ from gurobi_ml import add_predictor_constr
 
 
 def adversarial(model, config):
-    dataset = torchvision.datasets.MNIST(root="../Dataset/MNIST", train=True, transform=
-        transforms.ToTensor(), download=True)
+
+    if config.dataset == "MNIST":
+        dataset = torchvision.datasets.MNIST(root="../Dataset/MNIST", train=True, transform=
+            transforms.ToTensor(), download=True)
+    elif  config.dataset == "Cifar10":
+        normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                        std=[0.229, 0.224, 0.225])
+        dataset = torchvision.datasets.CIFAR10(root="/local1/caccmatt/Pruning_for_MIP/Dataset", train=True,
+                                            transform=transforms.Compose([
+                                                                    transforms.RandomHorizontalFlip(),
+                                                                    transforms.RandomCrop(32, 4),
+                                                                    normalize,
+                                                                    transforms.ToTensor(),
+                                                                ]), download=True)
+   
 
     imageno = config.samp_id
     image = dataset.data[imageno, :]
-    flat_img = image.reshape(-1,28*28).type(torch.float32).squeeze(0)/255
+
+    if config.dataset == "Cifar10":
+        image  = transforms.ToTensor()(image)
+        image = normalize(image)
+
+    flat_img = image.reshape(-1,model.in_size).type(torch.float32).squeeze(0)
+
+    
+    if config.dataset == "MNIST":
+        flat_img = flat_img/255
+
+
+
+    
+
     ex_prob = model.forward(flat_img)
 
     sorted_labels = torch.argsort(ex_prob)
     right_label = sorted_labels[-1]
     wrong_label = sorted_labels[-2]
-    print('Correct label is ', right_label, ' || Wrong label is ', wrong_label)
+    # breakpoint()
+
+    print('Correct label is ', right_label, ' || Wrong label is ', wrong_label,
+           "|| Real class is ", dataset.targets[imageno])
+    
+    if config.dataset == "Cifar10":
+        print(dataset.__dict__['class_to_idx'])
 
     image = flat_img.numpy()  # We need numpy converted image
 
@@ -31,10 +64,20 @@ def adversarial(model, config):
     m = gp.Model()
     delta = config.delta
 
-    x = m.addMVar(image.shape, lb=0.0, ub=1.0, name="x")
+    if config.dataset == "MNIST":
+        lb, ub = 0.0,1.0
+    elif config.dataset == "Cifar10":
+        lb, ub = -3.0,3.0
+    else:
+        print('dataset not available')
+        return 0
+
+    
+
+    x = m.addMVar(image.shape, lb=lb, ub=ub, name="x")
     y = m.addMVar(ex_prob.detach().numpy().shape, lb=-gp.GRB.INFINITY, name="y")
 
-    abs_diff = m.addMVar(image.shape, lb=0, ub=1, name="abs_diff")
+    abs_diff = m.addMVar(image.shape, lb=0, ub=ub-lb, name="abs_diff")
 
     m.setObjective(y[wrong_label] - y[right_label], gp.GRB.MAXIMIZE)
 
@@ -58,8 +101,26 @@ def adversarial(model, config):
 
 
     if m.ObjVal > 0.0:
-        plt.imshow(x.X.reshape((28, 28)), cmap="gray")
-        plt.savefig('counter_example.png')
+        counter_image =x.X
+        if config.dataset == "MNIST":
+            counter_image  = counter_image.reshape(28,28) 
+            color="gray"
+        else:
+            counter_image  =counter_image.reshape(3,32,32) 
+            counter_image  = transforms.ToTensor()(counter_image)
+            unnormalize = UnNormalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])
+            counter_image = unnormalize(counter_image)
+            counter_image  =counter_image.swapaxes(1,2) 
+            counter_image  =counter_image.swapaxes(1,0) 
+            color="brg" 
+        plt.imshow(counter_image, cmap=color)
+        plt.savefig('zcounter_example.png')
+
+        image_orig = dataset.data[imageno, :]
+        plt.imshow(image_orig, cmap=color)
+        plt.savefig('zorig_image.png')
+
+
         x_input = torch.tensor(x.X.reshape(1, -1), dtype=torch.float32)
         label = torch.argmax(model.forward(x_input))
         print(f"Solution is classified as {label}")
@@ -70,3 +131,19 @@ def adversarial(model, config):
     
     return elapsed , nodes, counter_ex
 
+class UnNormalize(object):
+    def __init__(self, mean, std):
+        self.mean = mean
+        self.std = std
+
+    def __call__(self, tensor):
+        """
+        Args:
+            tensor (Tensor): Tensor image of size (C, H, W) to be normalized.
+        Returns:
+            Tensor: Normalized image.
+        """
+        for t, m, s in zip(tensor, self.mean, self.std):
+            t.mul_(s).add_(m)
+            # The normalize code -> t.sub_(m).div_(s)
+        return tensor

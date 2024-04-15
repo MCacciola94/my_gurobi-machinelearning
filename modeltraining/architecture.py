@@ -5,9 +5,9 @@ import torch.nn as nn
 from modeltraining import pruningutils as pu
 import os
 
-def load_arch(arch, pretrained = "", already_pruned = True):
+def load_arch(arch, pretrained = "", already_pruned = True, in_size= 28*28):
 
-    model = build_model(arch)
+    model = build_model(arch, in_size)
     
 
     if not(pretrained == "")  and already_pruned:
@@ -35,7 +35,7 @@ def load_arch(arch, pretrained = "", already_pruned = True):
 
     return model
 
-def build_model(arch):
+def build_model(arch, in_size):
     """
     multi-layer fully connected neural network regression
     """
@@ -48,14 +48,17 @@ def build_model(arch):
 
     arch = aux
 
-    arch = [28*28] + arch + [10]
+    arch = [in_size] + arch + [10]
     layers = []
     for i in range(len(arch)-1):
         layers.append(nn.Linear(arch[i], arch[i+1]))
         if i < len(arch) - 2:
             layers.append(nn.ReLU())
-            
-    return nn.Sequential(*layers)
+
+    model = nn.Sequential(*layers)
+    model.in_size = in_size
+    
+    return model
 
 
 

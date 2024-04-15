@@ -17,6 +17,7 @@ from modeltraining import architecture, trainer
 import utils
 from mipoptimization.mnistadversarial import adversarial
 from modeltraining import pruningutils as pu
+from utils import DATA_SIZE
 
 
 def run(config):
@@ -51,11 +52,10 @@ def run(config):
         else:
             skip = False
 
-
         # Call of the algorithm
         if config.pretrained_path == '':                
             # load architecture
-            model = architecture.load_arch(config.arch)
+            model = architecture.load_arch(config.arch, in_size= DATA_SIZE[config.dataset])
             print()
             #train the model
             acc, loss = trainer.train(model, config)
@@ -133,7 +133,11 @@ if __name__ == "__main__":
     parser.add_argument("--dont_save",
         action="store_true",
         help="save traied model")
-    
+    # dataset
+    parser.add_argument("--dataset",
+                    type=str,
+                    default="MNIST",
+                    help="dataset for training")
     # model configuration
     parser.add_argument("--arch",
                         type=str,
@@ -246,6 +250,7 @@ if __name__ == "__main__":
     
     # get configuration
     config = parser.parse_args()
+    config.save_path = os.path.join(config.save_path,config.dataset)
     # run experiment pipeline
     run(config)
 

@@ -4,6 +4,8 @@ from modeltraining import pruningutils as pu
 from modeltraining import architecture as archs
 
 
+DATA_SIZE = {'MNIST':28*28, 'Cifar10':32*32*3}
+
 def getSavePath(config):
     """
     get file path to save result
@@ -22,6 +24,7 @@ def getSavePath(config):
         filename = "ARCH_{}-EPOCHS_{}".format(config.arch, config.epochs)
 
         # if different from defoult
+        dset = '-DSET_' + config.dataset if config.dataset != 'MNIST' else ''
         opt = '-OPT_' + config.optim if config.optim != 'sgd' else ''
         lr = '-LR_' + str(config.lr) if config.lr != 1e-1 else ''
         wd = '-WD_' + str(config.wd) if config.wd != 0.0 else ''
@@ -39,7 +42,7 @@ def getSavePath(config):
         thr_str = '-THRSTR_' + str(config.threshold_str) if config.prune and config.threshold_str !=  5e-3 else ''
         dim = '-DIM_' + str(config.dim) if config.prune and config.dim !=  1 else ''
 
-        filename += opt + lr + wd + mom + bs + reg + lamb + alpha + fte + thr + thr_str + dim 
+        filename += dset + opt + lr + wd + mom + bs + reg + lamb + alpha + fte + thr + thr_str + dim 
 
 
     # adversarial part info
@@ -67,11 +70,11 @@ def load_chkpt(path):
     print("=> loading pretrained model from '{}'".format(path))
     checkpoint = torch.load(path)
     arch = checkpoint['arch']
-    model = archs.load_arch(arch)
+    model = archs.load_arch(arch,in_size=model.in_size)
 
     if "checkpointPR_" in path.split('/')[-1]:
         pu.prune_thr(model, thr=1e-30)
-        model(torch.rand(1,28*28))
+        model(torch.rand(1,model.in_size))
 
     model.load_state_dict(checkpoint['state_dict'])
 

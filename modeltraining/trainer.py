@@ -78,7 +78,7 @@ def run_epoch(epoch, dataset, model,optimizer, criterion, config, reg_on = False
     start = time()
     for i, (input, target) in enumerate(dataset["train_loader"]):
 
-        input = input.reshape(-1,28*28)
+        input = input.reshape(-1,model.in_size)
         # compute output
         output = model(input)
 
@@ -130,7 +130,7 @@ def validate(dataset, model, config = None, reg_on = False, reg = None):
     with torch.no_grad():
         for i, (input, target) in enumerate(dataset["valid_loader"]):
             
-            input = input.reshape(-1,28*28)
+            input = input.reshape(-1,model.in_size)
             # compute output
             output = model(input)
             loss = criterion(output, target)
@@ -195,12 +195,12 @@ def binary_thr_search(model, dataset, iters, config):
         else :
             b=thr
             model.load_state_dict(original_state)
-            model(torch.rand([1,28*28]))
+            model(torch.rand([1,model.in_size]))
             # print('resuming')
             # validate(dataset, model, config, reg_on = False)
 
     model.load_state_dict(original_state)
-    model(torch.rand([1, 28*28]))
+    model(torch.rand([1, model.in_size]))
 
     pu.prune_thr(model,last_feas_thr)
     print('Final unstruct threshold ', last_feas_thr)
@@ -243,12 +243,12 @@ def binary_thr_struct_search(model, dataset, iters, config):
         else:
             b=thr
             model.load_state_dict(original_state)
-            model(torch.rand([1,28*28]))
+            model(torch.rand([1,model.in_size]))
             print('resuming')
             validate(dataset, model, config, reg_on = False)
 
     model.load_state_dict(original_state)
-    model(torch.rand([1,28*28]))
+    model(torch.rand([1,model.in_size]))
 
     pu.prune_struct(model,last_feas_thr)
     print('Final struct threshold ', last_feas_thr)

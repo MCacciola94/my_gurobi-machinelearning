@@ -82,7 +82,7 @@ def unit_test_seq(name):
 
     base_checkpoint=torch.load(name)
     arch =base_checkpoint['arch']
-    model_pruned= load_arch(arch)
+    model_pruned= load_arch(arch,in_size=model_pruned.in_size )
 
     pu.prune_thr(model_pruned,1.e-30)
 
@@ -90,11 +90,11 @@ def unit_test_seq(name):
     model_pruned.load_state_dict(base_checkpoint['state_dict'])
 
     model_pruned.eval()
-    model_pruned(torch.rand([1,28*28]))
+    model_pruned(torch.rand([1,model_pruned.in_size]))
 
     dataset = trainer.get_data()
     criterion = nn.CrossEntropyLoss()
-    model_pruned(torch.rand([1,28*28]))
+    model_pruned(torch.rand([1,model_pruned.in_size]))
 
     optimizer_pruned = torch.optim.SGD(model_pruned.parameters(), 0.0,
                                 momentum=0.0,

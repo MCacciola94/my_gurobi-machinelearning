@@ -21,7 +21,12 @@ parser.add_argument("--expnum",
 parser.add_argument("--dont_save",
     action="store_true",
     help="save trained model")
-
+# dataset
+parser.add_argument("--dataset",
+                type=str,
+                default="MNIST",
+                help="dataset for training")
+    # model configuration
 # # model configuration
 # parser.add_argument("--arch",
 #                     type=str,
@@ -131,15 +136,16 @@ setting = parser.parse_args()
 
 
 # config setting
-confset = {'arch':['2x50'],
+confset = {'arch':['2x40'],
            'reg':['spr'],
-           'lamb':[0.5],
-           'alpha':[0.9],
+           'lamb':[0.0],
+           'alpha':[0.0],
            'thr':[5e-2],
            'thr_str':[5e-3],
-           'id':[10000],
-           'delta':[5]}
+           'id':[10000+i+1 for i in range(10)],
+           'delta':[13]}
 
+setting.save_path = os.path.join(setting.save_path,setting.dataset)
 
 
 path_bkp = setting.save_path
@@ -154,7 +160,7 @@ for arch, reg, lamb, alpha, thr, thr_str, id, delta in itertools.product(*tuple(
     setting.threshold_str = thr_str
     setting.samp_id = id
     setting.delta = delta
-    if arch =='6x500': setting.time = 1800
+    # if arch =='6x500': setting.time = 1800
 
     print("===================================================================")
     print("===================================================================")
@@ -163,6 +169,7 @@ for arch, reg, lamb, alpha, thr, thr_str, id, delta in itertools.product(*tuple(
     print(setting)
     print()
     run(setting)
+    breakpoint()
     setting.save_path = path_bkp
     print("===================================================================")
     print("===================================================================")
